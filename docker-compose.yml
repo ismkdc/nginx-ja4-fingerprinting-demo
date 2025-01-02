@@ -1,0 +1,14 @@
+services:
+  nginx:
+    image: my-nginx
+    ports:
+      - "443:443"
+    restart: always
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf/nginx.conf:ro
+      - ./key.pem:/usr/local/nginx/conf/key.pem:ro
+      - ./cert.pem:/usr/local/nginx/conf/cert.pem:ro
+  api:
+    build:
+      context: api
+      dockerfile: dockerfile
